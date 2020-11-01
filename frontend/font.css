@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('./fonts/RobotoMono-Regular.woff2') format('woff2'),
+      url('./fonts/RobotoMono-Regular.woff') format('woff'),
+      url('./fonts/RobotoMono-Regular.ttf') format('truetype'),
+      url('./fonts/RobotoMono-Regular.svg#RobotoMono-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+

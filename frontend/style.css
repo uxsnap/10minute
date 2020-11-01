@@ -1,0 +1,56 @@
+html,
+body,
+.main {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  font-family: 'Roboto Mono';
+  box-sizing: border-box;
+}
+
+.main,
+.mail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  margin-top: 40px;
+  font-size: 46px;
+  color: #202020;
+}
+
+.main__content {
+  margin-top: 30px;
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+
+.mail-container__item {
+  margin-bottom: 20px;
+}
+
+.mail-item {
+  padding: 8px 12px;
+  font-size: 12px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.mail-item__header {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+
+.mail-item div {
+  margin-top: 10px;
+}
