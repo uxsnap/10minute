@@ -1,0 +1,88 @@
+html,
+body,
+#root,
+.main {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  font-family: 'Roboto Mono';
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('./fonts/RobotoMono-Regular.woff2') format('woff2'),
+      url('./fonts/RobotoMono-Regular.woff') format('woff'),
+      url('./fonts/RobotoMono-Regular.ttf') format('truetype'),
+      url('./fonts/RobotoMono-Regular.svg#RobotoMono-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.main,
+.mail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  margin-top: 40px;
+  font-size: 46px;
+  color: #202020;
+}
+
+.main__content {
+  margin-top: 30px;
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+
+.mail-container__item {
+  margin-bottom: 20px;
+}
+
+.mail-item {
+  padding: 8px 12px;
+  font-size: 12px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.mail-item__header {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+
+.mail-item div {
+  margin-top: 10px;
+}
+
+.error {
+  margin-top: 40px;
+  font-size: 36px;
+  color: darkred;
+}
+
+.refresh {
+  margin-top: 20px;
+  border: 1px solid #202020;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.refresh:hover {
+  background-color: #202020;
+  color: white;
+  transition: .4s;
+}
