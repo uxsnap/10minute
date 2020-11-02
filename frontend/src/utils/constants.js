@@ -3,3 +3,5 @@ export const RES_STATUS = {
 	ERROR: 400,
 	LOADING: -1,
 };
+
+export const TIMEOUT = 3600 * 10;

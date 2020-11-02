@@ -53,7 +53,9 @@ body,
   padding: 8px 12px;
   font-size: 12px;
   width: 100%;
-  max-width: 500px;
+  max-width: 700px;
+  border: 1px solid #202020;
+  border-radius: 5px;
 }
 
 .mail-item__header {
@@ -63,18 +65,24 @@ body,
   justify-content: space-between
 }
 
-.mail-item div {
-  margin-top: 10px;
+.mail-item__subject {
+  margin-top: 5px;
+  font-weight: 500;
 }
 
 .error {
   margin-top: 40px;
   font-size: 36px;
   color: darkred;
+  text-align: center;
+}
+
+.domain {
+  margin-top: 20px;
+  font-weight: bold;
 }
 
 .refresh {
-  margin-top: 20px;
   border: 1px solid #202020;
   padding: 8px 12px;
   border-radius: 5px;
@@ -85,4 +93,14 @@ body,
   background-color: #202020;
   color: white;
   transition: .4s;
+}
+
+.mail-item__message {
+  margin-top: 15px;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
