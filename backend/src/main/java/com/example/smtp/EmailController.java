@@ -1,26 +1,53 @@
 package com.example.smtp;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.*;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/email")
+@AllArgsConstructor
 public class EmailController {
-  @GetMapping
-  public ArrayList<EmailDto> getEmail() {
+  private final MailRepository mailRepository;
+
+  @PostMapping
+  public DomainDataDto getEmail(@RequestBody TokenDto providedToken) {
+    mailRepository.updateExired();
+    UUID currentToken = providedToken.getToken();
+
+    List<MailEntity> domains = mailRepository.findAll();
+    MailEntity foundDomain = domains
+      .stream()
+      .filter(mailEntity -> Objects.equals(mailEntity.getToken(), currentToken))
+      .findFirst()
+      .orElse(null);
+
+    if (foundDomain == null)
+      return DomainDataDto.empty(null);
+
     ReadEmail readEmail = new ReadEmail(
-      Config.MAIL_HOST,
-      Config.MAIL_USER,
-      Config.MAIL_PASSWORD
+      foundDomain.getHost(),
+      foundDomain.getName(),
+      foundDomain.getPassword()
     );
 
+    Calendar date = Calendar.getInstance();
+    long t = date.getTimeInMillis();
+
+    UUID token = UUID.randomUUID();
+    if (currentToken == null) {
+      foundDomain.setToken(token);
+      foundDomain.setTokenExpire(new Date(t + (10 * Config.ONE_MINUTE_IN_MILLIS)));
+    } else {
+      foundDomain.setToken(currentToken);
+    }
     try {
-      return readEmail.read();
+      mailRepository.save(foundDomain);
+      return new DomainDataDto(foundDomain.getName(), foundDomain.getToken(), readEmail.read());
     } catch (Exception e) {
-      return new ArrayList<>();
+      return DomainDataDto.empty(token);
     }
   }
 }
